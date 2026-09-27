@@ -1,16 +1,28 @@
-import { useState, useEffect, useRef } from 'react';
-import { commands, welcomeMessage } from '../data/commands';
+import { useState, useEffect, useRef, useMemo } from 'react';
+import { getCommands, getWelcomeMessage } from '../data/commands';
 import './Terminal.css';
 
-const Terminal = () => {
+const Terminal = ({ lang = 'es', onLanguageChange }) => {
+    const commands = useMemo(() => getCommands(lang, onLanguageChange), [lang, onLanguageChange]);
+
     const [history, setHistory] = useState([
-        { type: 'output', content: welcomeMessage }
+        { type: 'output', content: getWelcomeMessage(lang) }
     ]);
     const [input, setInput] = useState('');
     const [cmdHistory, setCmdHistory] = useState([]);
     const [historyIndex, setHistoryIndex] = useState(-1);
     const inputRef = useRef(null);
     const bottomRef = useRef(null);
+
+    // Keep initial welcome message updated if language changes before any interaction
+    useEffect(() => {
+        setHistory(prev => {
+            if (prev.length === 1 && prev[0].type === 'output') {
+                return [{ type: 'output', content: getWelcomeMessage(lang) }];
+            }
+            return prev;
+        });
+    }, [lang]);
 
     useEffect(() => {
         if (bottomRef.current) {
@@ -31,16 +43,24 @@ const Terminal = () => {
         setHistoryIndex(-1);
 
         if (trimmedCmd === 'clear') {
-            setHistory([{ type: 'output', content: welcomeMessage }]);
+            setHistory([{ type: 'output', content: getWelcomeMessage(lang) }]);
             return;
         }
 
-        if (commands[trimmedCmd]) {
-            newHistory.push({ type: 'output', content: commands[trimmedCmd].output });
+        const command = commands[trimmedCmd];
+
+        if (command) {
+            newHistory.push({ type: 'output', content: command.output });
+            if (command.action) {
+                command.action();
+            }
         } else {
+            const errorMsg = lang === 'en'
+                ? `command not found: ${trimmedCmd}. Type 'help' to see available commands.`
+                : `comando no encontrado: ${trimmedCmd}. Escribe 'help' para ver los comandos disponibles.`;
             newHistory.push({
                 type: 'error',
-                content: `comando no encontrado: ${trimmedCmd}. Escribe 'help' para ver los comandos disponibles.`
+                content: errorMsg
             });
         }
 

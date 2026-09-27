@@ -2,7 +2,7 @@
 
 Proyecto de desarrollo de una página web personal orientada a marca profesional y empleabilidad.
 
-La web presenta de forma clara y estructurada mi perfil como **Project Manager y Responsable de Transformación Digital**, incluyendo experiencia, proyectos, stack tecnológico y forma de trabajar, como alternativa funcional al CV tradicional.
+La web presenta de forma clara y estructurada mi perfil como **Project Manager, Responsable de Transformación Digital y Head of Data Platform**, incluyendo experiencia, proyectos, stack tecnológico y forma de trabajar, como alternativa funcional al CV tradicional.
 
 El diseño se basa en una **interfaz tipo terminal interactiva**, con una estética sobria y profesional, priorizando claridad, usabilidad y diferenciación sin caer en formatos genéricos.
 
@@ -21,7 +21,7 @@ El diseño se basa en una **interfaz tipo terminal interactiva**, con una estét
 
 La web utiliza la metáfora de una **terminal** como elemento principal de navegación.
 
-Los usuarios pueden explorar el contenido mediante comandos (ej. `pablo --about`, `pablo --projects`, `pablo --ai`), reflejando una forma de trabajar basada en:
+Los usuarios pueden explorar el contenido mediante comandos (ej. `pablo --about`, `pablo --impact`, `pablo --skills`, `pablo --ai`, `lang en`), reflejando una forma de trabajar basada en:
 - Análisis
 - Orden
 - Decisión
@@ -33,10 +33,11 @@ Los usuarios pueden explorar el contenido mediante comandos (ej. `pablo --about`
 
 ## 🧠 Contenido principal
 
-- **Sobre mí**: perfil profesional y forma de trabajar.
-- **Impacto**: experiencia real en proyectos de transformación digital.
-- **Stack tecnológico**: tecnologías y herramientas utilizadas.
+- **Sobre mí**: perfil profesional como Project Manager, Transformación Digital y Head of Data Platform.
+- **Impacto**: experiencia real en proyectos de transformación digital, plataformas de datos y ERPs.
+- **Stack tecnológico**: tecnologías y herramientas utilizadas (Data, ERP, automatización, cloud/APIs).
 - **IA aplicada**: uso de inteligencia artificial como apoyo a programación, gestión y toma de decisiones.
+- **Internacionalización (i18n)**: soporte completo bilingüe (Español / Inglés) tanto en la interfaz (selector visual en cabecera) como en la terminal (`lang en` / `lang es`), con persistencia en `localStorage`.
 - **Contacto**: enlaces profesionales.
 
 ---
@@ -57,8 +58,9 @@ La responsabilidad y la decisión final son siempre humanas.
 
 ## 🛠️ Stack tecnológico
 
-- **Frontend**: HTML, CSS, JavaScript (interfaz tipo terminal)
-- **Herramientas**: Visual Studio Code
+- **Frontend**: React, HTML, CSS, JavaScript (interfaz tipo terminal interactiva)
+- **Data & Plataforma**: Python, SQL, integración de APIs y modelado de datos
+- **Herramientas**: Visual Studio Code, Git & GitHub
 - **Diseño**: Dark mode elegante, microinteracciones, responsive
 - **Control de versiones**: Git & GitHub
 
@@ -85,7 +87,7 @@ Se actualizará conforme se añadan nuevos proyectos, mejoras visuales o ajustes
 ## 👤 Autor
 
 **Pablo Carrasco González**  
-Project Manager · Responsable de Transformación Digital  
+Project Manager · Responsable de Transformación Digital · Head of Data Platform
 
 📍 Sevilla / Remoto  
 🔗 LinkedIn: https://www.linkedin.com/in/pablo-carrasco-gonzalez  

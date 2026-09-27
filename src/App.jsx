@@ -1,13 +1,57 @@
+import { useState, useEffect } from 'react';
 import Terminal from './components/Terminal';
 import ProfileImg from './assets/profile.png';
-import { Briefcase, Cpu, Users } from 'lucide-react';
+import { Briefcase, Cpu, Users, Database, Globe } from 'lucide-react';
 import { Analytics } from '@vercel/analytics/react';
-import './App.css'
+import { content } from './data/translations';
+import './App.css';
 
 function App() {
+  const [lang, setLang] = useState(() => {
+    return localStorage.getItem('pablo_lang') || 'es';
+  });
+
+  useEffect(() => {
+    localStorage.setItem('pablo_lang', lang);
+    document.documentElement.lang = lang;
+  }, [lang]);
+
+  const currentContent = content[lang] || content.es;
+
+  const highlightIcons = {
+    data: <Database size={18} />,
+    erp: <Briefcase size={18} />,
+    automation: <Cpu size={18} />,
+    leadership: <Users size={18} />
+  };
+
   return (
     <div className="app-container">
       <main className="container">
+        
+        {/* Top bar with language switcher */}
+        <div className="top-nav-bar">
+          <div className="lang-switcher" role="group" aria-label="Language selector">
+            <span className="lang-icon"><Globe size={15} /></span>
+            <button
+              type="button"
+              className={`lang-btn ${lang === 'es' ? 'active' : ''}`}
+              onClick={() => setLang('es')}
+              aria-pressed={lang === 'es'}
+            >
+              ES
+            </button>
+            <span className="lang-divider">/</span>
+            <button
+              type="button"
+              className={`lang-btn ${lang === 'en' ? 'active' : ''}`}
+              onClick={() => setLang('en')}
+              aria-pressed={lang === 'en'}
+            >
+              EN
+            </button>
+          </div>
+        </div>
 
         <div className="hero-section">
           <div className="profile-container">
@@ -16,38 +60,32 @@ function App() {
 
           <div className="hero-content">
             <h1>Pablo Carrasco González</h1>
-            <h2>Project Manager <span className="highlight">·</span> Digital Transformation</h2>
+            <h2>{currentContent.hero.subtitle}</h2>
             <p className="hero-bio">
-              Analizo datos y optimizo procesos para transformar la incertidumbre en resultados medibles.
+              {currentContent.hero.bio}
             </p>
 
             <div className="hero-highlights">
-              <div className="highlight-item">
-                <span className="icon"><Briefcase size={18} /></span>
-                <span>Implantación ERP Multi-compañía</span>
-              </div>
-              <div className="highlight-item">
-                <span className="icon"><Cpu size={18} /></span>
-                <span>Automatización de Procesos</span>
-              </div>
-              <div className="highlight-item">
-                <span className="icon"><Users size={18} /></span>
-                <span>Liderazgo & Gestión del Cambio</span>
-              </div>
+              {currentContent.hero.highlights.map((item) => (
+                <div key={item.key} className="highlight-item">
+                  <span className="icon">{highlightIcons[item.key]}</span>
+                  <span>{item.label}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
 
-        <Terminal />
+        <Terminal lang={lang} onLanguageChange={setLang} />
 
       </main>
 
       <footer className="footer">
-        <p>© {new Date().getFullYear()} Pablo Carrasco. Built with React & Coffee.</p>
+        <p>{currentContent.footer.builtWith(new Date().getFullYear())}</p>
       </footer>
       <Analytics />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

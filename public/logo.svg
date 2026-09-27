@@ -1,47 +1,70 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
   <defs>
-    <!-- Dark background for the circle -->
-    <linearGradient id="circleBg" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#24292e"/> <!-- Lighter charcoal for better visibility -->
-      <stop offset="100%" stop-color="#0d1117"/>
+    <!-- Background Gradient: Deep Obsidian Slate -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="50%" stop-color="#0b1120"/>
+      <stop offset="100%" stop-color="#020617"/>
     </linearGradient>
-    
-    <!-- Bright Green Gradient for High Contrast -->
-    <linearGradient id="neonPop" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#4ade80"/> <!-- Very bright green -->
-      <stop offset="100%" stop-color="#22c55e"/>
+
+    <!-- Tech Accent Gradients: Electric Cyan to Neon Emerald -->
+    <linearGradient id="cyanToEmerald" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#10b981"/>
     </linearGradient>
-    
-    <!-- Outer Glow to define shape -->
-    <filter id="outerGlow" x="-50%" y="-50%" width="200%" height="200%">
-      <feDropShadow dx="0" dy="0" stdDeviation="10" flood-color="#4ade80" flood-opacity="0.3"/>
+
+    <linearGradient id="emeraldToCyan" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="50%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+
+    <!-- Subtle Border Stroke Gradient -->
+    <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.6"/>
+      <stop offset="50%" stop-color="#10b981" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#22c55e" stop-opacity="0.5"/>
+    </linearGradient>
+
+    <!-- Outer Ambient Glow Filter -->
+    <filter id="badgeGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="12" flood-color="#10b981" flood-opacity="0.25"/>
     </filter>
   </defs>
 
-  <!-- Main Circle Background - Slightly lighter dark to stand out from black tabs -->
-  <circle cx="256" cy="256" r="240" fill="url(#circleBg)" />
-  
-  <!-- Bright Green Ring Border - Crucial for defining the edge -->
-  <circle cx="256" cy="256" r="230" fill="none" stroke="url(#neonPop)" stroke-width="15" />
+  <!-- Background Squircle / App Icon Base -->
+  <rect x="16" y="16" width="480" height="480" rx="116" fill="url(#bgGrad)" stroke="url(#borderGrad)" stroke-width="3" filter="url(#badgeGlow)"/>
 
-  <!-- The "PC" Monogram - BIG, BOLD, and BRIGHT -->
-  <g transform="translate(106, 130) scale(1.2)">
-      <!-- P -->
-      <path d="M50 0 L50 140 L85 140 L85 80 L130 80 C160 80 160 0 130 0 Z M85 30 L120 30 C130 30 130 50 120 50 L85 50 Z" 
-            fill="#e6edf3" stroke="none"/> <!-- White/Silver for max readability -->
-      
-      <!-- C -->
-      <path d="M210 140 L160 140 L160 110 L200 110 C210 110 215 120 205 130 Z M160 110 L160 30 L200 30 C210 30 215 20 205 10 L195 0 L160 0 C120 0 110 30 110 70 C110 110 120 140 160 140 L210 140 Z" 
-            fill="#e6edf3" stroke="none" transform="translate(10, 0)"/>
+  <!-- Subtle Radial Glow in Center -->
+  <circle cx="256" cy="256" r="160" fill="#10b981" opacity="0.06"/>
+  <circle cx="280" cy="230" r="120" fill="#38bdf8" opacity="0.05"/>
+
+  <!-- P & C Monogram Group -->
+  <g>
+    <!-- 'P' Vertical Spine (Architecture & Foundation) -->
+    <rect x="136" y="128" width="44" height="256" rx="22" fill="url(#cyanToEmerald)"/>
+
+    <!-- Terminal Prompt symbol '> ' inside the P vertical stem -->
+    <path d="M 152 244 L 164 256 L 152 268" fill="none" stroke="#0b1120" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- 'P' Upper Loop (Forward Vision) -->
+    <path d="M 170 128 H 262 C 318 128, 356 166, 356 216 C 356 266, 318 304, 262 304 H 170" 
+          fill="none" 
+          stroke="url(#cyanToEmerald)" 
+          stroke-width="44" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"/>
+
+    <!-- 'C' Interlocking Outer Curve (Data Platform & Integration) -->
+    <path d="M 334 184 C 298 144, 224 158, 224 256 C 224 340, 286 376, 352 352" 
+          fill="none" 
+          stroke="url(#emeraldToCyan)" 
+          stroke-width="36" 
+          stroke-linecap="round"/>
+
+    <!-- Data Platform Terminal Node: Glowing Core Accent -->
+    <circle cx="352" cy="352" r="16" fill="#38bdf8"/>
+    <circle cx="352" cy="352" r="7" fill="#ffffff"/>
   </g>
-  
-  <!-- Tech Accents - High Contrast Green -->
-  <circle cx="256" cy="70" r="12" fill="#4ade80"/>
-  <circle cx="256" cy="442" r="12" fill="#4ade80"/>
-  <rect x="65" y="250" width="12" height="12" fill="#4ade80"/>
-  <rect x="435" y="250" width="12" height="12" fill="#4ade80"/>
-  
-  <!-- Connecting Circuit Line (Bright) -->
-  <path d="M180 256 L332 256" stroke="#4ade80" stroke-width="4" opacity="0.6"/>
-
 </svg>
